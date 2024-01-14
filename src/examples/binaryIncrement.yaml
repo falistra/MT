@@ -1,35 +1,36 @@
-name: binary increment
+name: incremento binario
 source code: |
-  # Adds 1 to a binary number.
+  # Aggiunge uno a un numero binario.
   input: '1011'
   blank: ' '
-  start state: right
+  start state: destra
   table:
-    # scan to the rightmost digit
-    right:
+    # va al carattere piu' a destra
+    destra:
       [1,0]: R
-      ' '  : {L: carry}
-    # then carry the 1
-    carry:
+      ' '  : {L: aggiunge}
+    # poi aggiunge 1
+    aggiunge:
       1      : {write: 0, L}
-      [0,' ']: {write: 1, L: done}
-    done:
+      [0,' ']: {write: 1, L: halt}
+    halt:
 
 
-  # Exercises:
+  # Esercizi:
 
-  # • Modify the machine to always halt on the leftmost digit
-  #   (regardless of the number's length).
-  #   Hint: add a state between carry and done.
+  # * Modificare la macchina in modo che si fermi sempre sulla cifra più a sinistra 
+  #   (indipendentemente dalla lunghezza del numero).
+  #   Suggerimento: aggiungi uno stato tra "aggiunge" e "halt".
 
-  # • Make a machine that adds 2 instead of 1.
-  #   Hint: 2 is '10' in binary, so the last digit is unaffected.
-  #   Alternative hint: chain together two copies of the machine from
-  #   the first exercise (renaming the states of the second copy).
+  # • Costruire una macchina che addizioni 2 invece di 1.
+  #   Suggerimento: 2 è '10' in binario, quindi l'ultima cifra non viene influenzata.
+  #   Suggerimento alternativo: concatenare due copie della macchina da
+  #   il primo esercizio (rinominare gli stati della seconda copia).
 
-  # • Make a machine to subtract 1.
-  #   To simplify things, assume the input is always greater than 0.
+  # • Costruire una macchina che sottrae 1.
+  #   Per semplicita', assumere che l'input e' sempre maggiore di 1.
+
 positions:
-  right: {x: 230, y: 250}
-  carry: {x: 400, y: 250}
-  done: {x: 570, y: 250}
+  destra: {x: 230, y: 250}
+  piu: {x: 400, y: 250}
+  halt: {x: 570, y: 250}

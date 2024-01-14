@@ -5,8 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<meta name="description" content="Visualize and simulate Turing machines as animated state diagrams.
-Create and share your own machines using a simple format. Examples and exercises are included.">
+<meta name="description" content="Visualizza e simula le macchine di Turing">
 <meta name="keywords" content="Turing machine, finite automata, simulator, visualization, state diagram">
 <meta name="robots" content="NOODP">
 <title>Turing machine visualization</title>
@@ -206,7 +205,7 @@ integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7
   <div class="container-fluid">
     <div class="navbar-header">
       <span class="navbar-brand">
-        <span class="kern">T</span>uring <span class="kern-Ma">M</span>achine <span class="kern-Vi">V</span>isualization
+        <span class="kern-Ma">M</span>acchina di <span class="kern">T</span>uring  
       </span>
     </div>
 
@@ -217,28 +216,28 @@ integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7
       <div class="btn-group">
         <button type="button" class="btn btn-default btn-sm dropdown-toggle"
         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-          Edit <span class="caret"></span>
+          Edita <span class="caret"></span>
         </button>
         <ul class="dropdown-menu">
-          <li><a href="#" id="tm-doc-action-duplicate">Duplicate document&hellip;</a></li>
-          <li><a href="#" id="tm-doc-action-newblank">New blank document&hellip;</a></li>
+          <li><a href="#" id="tm-doc-action-duplicate">Duplica il documento&hellip;</a></li>
+          <li><a href="#" id="tm-doc-action-newblank">Documento nuovo&hellip;</a></li>
           <li role="separator" class="divider"></li>
           <!-- "Rename" saves when closed, so don't allow closing with Esc -->
           <li><a href="#" data-toggle="modal" data-keyboard="false"
-            data-target="#renameDialog">Rename&hellip;</a></li>
+            data-target="#renameDialog">Rinomina&hellip;</a></li>
           <li role="separator" class="divider"></li>
-          <li><a href="#" data-toggle="modal" data-target="#deleteDialog">Delete&hellip;</a></li>
+          <li><a href="#" data-toggle="modal" data-target="#deleteDialog">Cancella&hellip;</a></li>
         </ul>
       </div>
     </div>
     <!-- Import and "Share" Menu -->
     <div class="navbar-right">
-      <button type="button" class="btn btn-default navbar-btn tm-needsready" aria-label="Import" disabled
+      <button type="button" class="btn btn-default navbar-btn tm-needsready" aria-label="Importa" disabled
       data-toggle="modal" data-target="#importPanel"
       data-has-tooltip data-placement="bottom" data-trigger="hover" title="Import">
         <span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span>
       </button>
-      <button type="button" class="btn btn-default navbar-btn tm-needsready" aria-label="Share" disabled
+      <button type="button" class="btn btn-default navbar-btn tm-needsready" aria-label="Condividi" disabled
       data-toggle="modal" data-target="#exportPanel" data-keyboard="false"
       data-has-tooltip data-placement="bottom" data-trigger="hover" title="Share">
         <span class="glyphicon glyphicon-share" aria-hidden="true"></span>
@@ -253,11 +252,11 @@ integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="renameDialogHeader">Document Name</h4>
+        <h4 class="modal-title" id="renameDialogHeader">Nome Documento</h4>
       </div>
       <div class="modal-body">
         <form id="renameDialogForm">
-          <label class="sr-only" for="renameDialogInput">Document Name</label>
+          <label class="sr-only" for="renameDialogInput">Nome Documento</label>
           <input type="text" class="form-control" id="renameDialogInput" placeholder="document name">
         </form>
       </div>
@@ -270,11 +269,10 @@ integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="deleteDialogHeader">Delete this document?</h4>
+        <h4 class="modal-title" id="deleteDialogHeader">Cancella questo documento?</h4>
       </div>
       <div class="modal-body">
-        This will erase the document and remove it from the menu.
-        You can’t undo this action.
+        Cancella in modo irreversibile questo documento e lo toglie dal menu.
       </div>
       <div class="modal-footer">
         <button id="tm-doc-action-delete" type="button"
@@ -290,19 +288,19 @@ integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="resetExampleDialogHeader">Save a copy of your changes?</h4>
+        <h4 class="modal-title" id="resetExampleDialogHeader">Salvare una copia delle modifiche?</h4>
       </div>
       <div class="modal-body">
-        <p>Resetting this example will erase any changes made to it.</p>
-        You have the option to save your changes as a new document, or simply discard them.
-        You can’t undo this action.
+        <p>Cancellare questo documento canceller&aacute; ogni modifica fatta.</p>
+        &Eacute; possibile salvare i cambiamenti come come un nuovo documento, o semplicemente scartarlo.
+        &Eacute; un azione irreversibile.
       </div>
       <div class="modal-footer">
         <button id="tm-doc-action-resetdiscard" type="button"
-          class="btn btn-danger pull-left" data-dismiss="modal">Discard</button>
-        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          class="btn btn-danger pull-left" data-dismiss="modal">Scarta</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancella</button>
         <button id="tm-doc-action-resetsave" type="button"
-          class="btn btn-primary btn-wide-save" data-dismiss="modal">Save</button>
+          class="btn btn-primary btn-wide-save" data-dismiss="modal">Salva</button>
       </div>
     </div>
   </div>
@@ -314,9 +312,10 @@ aria-labelledby="importPanelHeader">
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="importPanelHeader">Import</h4>
+        <h4 class="modal-title" id="importPanelHeader">Importa</h4>
       </div>
       <div class="modal-body">
+        <!--
         <div class="panel panel-default">
           <div class="panel-heading">
             <h5 class="panel-title">From GitHub gist</h5>
@@ -336,13 +335,14 @@ aria-labelledby="importPanelHeader">
             </span>
           </div>
         </div>
+      -->
         <div id="importFilesPanel" class="panel panel-default">
           <div class="panel-heading">
-            <h5 class="panel-title">From files</h5>
+            <h5 class="panel-title">Da files</h5>
           </div>
           <div class="panel-body">
             <div class="form-group">
-              <p>Choose one or more files to import</p>
+              <p>Scegliere uno o pi&uacute; files da importare</p>
               <div class="input-group">
                 <input type="file" name="files" multiple class="form-control">
                 <span class="input-group-btn">
@@ -425,13 +425,10 @@ aria-labelledby="importPanelHeader">
                 </a>
                 <div id="downloadAttrInfo" class="help-block collapse icon-help-block">
                   <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-                  <p>Your browser
-                    <a href="http://caniuse.com/#feat=download" target="_blank">doesn’t support</a>
-                    an HTML5 <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#attr-download" target="_blank">feature</a>
-                    to mark links as downloadable.
-                    Without sending your data to a server—just to have it
-                    <a href="https://en.wikipedia.org/wiki/MIME#Content-Disposition" target="_blank">marked</a>
-                    and sent back again—the simplest alternative is to save the file manually.
+                  <p>Il browser
+                    <a href="http://caniuse.com/#feat=download" target="_blank">non supporta </a>
+                    <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#attr-download" target="_blank"></a>una caratteristica di HTML5</a>
+                    per marcare i links come scaricabili.
                   </p>
                 </div>
               </div>
@@ -439,7 +436,7 @@ aria-labelledby="importPanelHeader">
             <div class="form-group">
               <p>The contents of the download are below.</p>
               <button id="copyContentsButton" type="button" class="btn btn-default" data-clipboard-target="#exportTextarea">
-                Copy to clipboard
+                Copia nella clipboard
               </button>
             </div>
             <textarea id="exportTextarea"
@@ -461,10 +458,10 @@ aria-labelledby="importPanelHeader">
         <noscript>
           <div class="panel panel-default">
             <div class="panel-heading">
-              <h3 class="panel-title">Tip: Enable JavaScript</h3>
+              <h3 class="panel-title">Suggerimento: Abilita JavaScript</h3>
             </div>
             <div class="panel-body">
-              <p>The visualization couldn’t load because JavaScript is disabled.</p>
+              <p>Non &eacute; possibile visualizzare poich&eacute; Javascript non &eacute; abilitato.</p>
             </div>
           </div>
         </noscript>
@@ -474,13 +471,13 @@ aria-labelledby="importPanelHeader">
         <div class="col-xs-1">
           <button type="button" class="btn btn-warning btn-xs text-center tm-btn-diagram tm-reset">
             <span class="glyphicon glyphicon-fast-backward" aria-hidden="true"></span><br>
-            Reset
+            Reimposta
           </button>
         </div>
         <div class="col-xs-2 col-xs-offset-4 text-center">
           <button type="button" class="btn btn-primary text-center tm-btn-diagram tm-step">
             <span class="glyphicon glyphicon-step-forward" aria-hidden="true"></span><br>
-            Step
+           Passo
           </button>
         </div>
         <div class="col-xs-1">
@@ -497,10 +494,10 @@ aria-labelledby="importPanelHeader">
     <div id="editor-wrapper">
       <div id="editor-alerts-container"></div>
       <button type="button" class="btn btn-primary tm-editor-load">
-        Load machine
+       Carica la macchina
       </button>
       <button type="button" class="btn btn-default tm-editor-revert">
-        Revert to diagram
+        Torna al diagramma
       </button>
       <div id="editor-container" class="tm-editor"></div>
     </div>
@@ -524,107 +521,104 @@ aria-labelledby="importPanelHeader">
 <!-- Tutorial -->
 <div id="tutorial" class="row">
   <section class="col-md-4 col-sm-6">
-    <h3>Try it out</h3>
+    <h3>Provare!</h3>
     <p>
-      <strong>Run</strong> the machine to see it in action.
-      At any time, you can <strong>step</strong> or <strong>pause</strong> to get a closer look,
-      or <strong>reset</strong> to start over.
+      <strong>Run</strong> la macchina per vederla in azione.
+      In ogni momento, si pu&oacute; cliccare  <strong>Passo</strong> o <strong>Pausa</strong> per analizzare la situazione,
+      o <strong>Reimposta</strong> per ricominciare.
     </p>
-    <p>There are over a dozen different example machines to explore.</p>
     <p>
-      Most of the examples take input. Experiment with different inputs to see what happens!
-      Edit the code and click <em>Load machine</em> to sync your changes.
+      Si possono fare esperimenti con input diversi!
+      Editare il codice e cliccare <em>Carica la macchina</em> per sincronizzare le modifiche.
     </p>
     <section>
-      <h4>What’s going on?</h4>
-      <p>The colored circles are <em>states</em>. The squares underneath are <em>tape cells</em>.</p>
-      <p>The current state and tape cell are highlighted.</p>
-      <p>At each step, a Turing machine reads its current state and tape symbol,
-      and looks them up in its <em>transition table</em> for an instruction.
-      Each <em>instruction</em> does 3 things:</p>
+      <h4>Cosa si vede?</h4>
+      <p>I cerchi colorati sono <em>stati</em>. I quadrati sottostanti sono <em>celle del nastro</em>.</p>
+      <p>Lo stato e la cella correnti sono evidenziati.</p>
+      <p>Ad ogni passo, la Macchina di Turing legge lo stato e la cella correnti,
+      e li cerca nella <em>tabella di transizione</em> per ottenere l'istruzione corrispondente.
+      Ogni <em>istruzione</em> fa tre azioni:</p>
       <ol>
-        <li><strong>write</strong> a symbol to the current tape cell</li>
-        <li><strong>move</strong> to the left or right by one cell</li>
-        <li><strong>set</strong> the new state</li>
+        <li><strong>scrive</strong> un simbolo nella cella corrente</li>
+        <li><strong>muove</strong> a sinistra (L) o a destra (R)</li>
+        <li><strong>imposta</strong> un nuovo stato</li>
       </ol>
-      <p>That’s it!</p>
-      <p>This repeats step after step, until the machine reaches a combination of state and symbol
-        that don’t have an instruction defined. At that point it <em>halts</em>.
+      <p>Questo &eacute; tutto!</p>
+      <p>Questo si ripete passo dopo passo, fino a quando la macchina una combinazione di stato e simbolo
+        che non ha una corrispondente istruzione definita. A questo punto la macchia <em> si ferma </em>.
       </p>
     </section>
     <section>
       <h4><a href="#tm-details" class="disclosure-triangle collapsed" role="button" data-toggle="collapse">
-        In more detail
+        In dettaglio
       </a></h4>
       <div id="tm-details" class="panel-group collapse" role="tablist" aria-multiselectable="true">
         <div class="panel panel-default">
           <div id="headingBasics" class="panel-heading" role="tab">
             <h4 class="panel-title">
               <a role="button" data-toggle="collapse" data-parent="#tm-details" href="#details-basics" aria-controls="details-basics" aria-expanded="true">
-                Basics
+                Introduzione
               </a>
             </h4>
           </div>
           <div id="details-basics" aria-labelledby="headingBasics" class="panel-collapse collapse in" role="tabpanel">
             <div class="panel-body">
-              <p>A <dfn>Turing machine</dfn> is an abstract device to model computation as rote symbol manipulation.</p>
-              <p>Each machine has a finite number of states, and a finite number of possible symbols.
-                These are fixed before the machine starts, and do not change as the machine runs.</p>
-              <p>There are an <em>infinite</em> number of tape cells, however, extending endlessly to the left and right.
-                Each tape cell bears a symbol. Any cell not part of the input or not yet written to bears the blank symbol by default.
-                Notice that at any step, only finitely many cells bear a non-blank symbol.</p>
-              <p>(As a mathematical model, a Turing machine has infinite memory (an infinite tape) so as to not artificially restrict its power.
-                In practice, many machines of interest take finite memory, and can be fully simulated for manageable input sizes.
-                Even machines that use infinite memory—and hence never halt—use at most one new tape cell per step, and so can be simulated to an extent.)</p>
-            </div>
+              <p>Una <dfn>macchina di Turing</dfn> è un dispositivo astratto per modellare il calcolo come manipolazione meccanica di simboli.</p>
+              <p>Ogni macchina ha un numero finito di stati e un numero finito di possibili simboli.
+                Questi vengono fissati prima dell'avvio della macchina e non cambiano durante il funzionamento della macchina.</p>
+              <p>Tuttavia esiste un numero <em>infinito</em> di celle del nastro, che si estendono all'infinito a sinistra e a destra.
+                Ogni cella del nastro riporta un simbolo. Qualsiasi cella che non fa parte dell'input o in cui non è ancora stata scritta porta il simbolo vuoto come impostazione predefinita.
+                Da notare che in ogni passaggio, solo un numero finito di celle reca un simbolo non vuoto.</p>
+              <p>(Come modello matematico, una macchina di Turing ha una memoria infinita (un nastro infinito) in modo da non limitare artificialmente la sua potenza.
+                In pratica, molte macchine di interesse richiedono memoria finita e possono essere completamente simulate per dimensioni di input gestibili.
+                Anche le macchine che utilizzano una memoria infinita, e quindi non si fermano mai, utilizzano al massimo una nuova cella del nastro per passaggio e quindi possono essere simulate in una certa misura.)</p>            </div>
           </div>
         </div>
         <div class="panel panel-default">
           <div id="headingFormalDefn" class="panel-heading" role="tab">
             <h4 class="panel-title">
               <a class="collapsed" role="button" data-toggle="collapse" data-parent="#tm-details" href="#details-formal-defn" aria-controls="details-formal-defn" aria-expanded="false">
-                Formal definition
+                Definzione formale
               </a>
             </h4>
           </div>
           <div id="details-formal-defn" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFormalDefn">
             <div class="panel-body">
-              <p>The formal definition of a Turing machine has slight variations but essentially is a tuple (ordered list) comprising</p>
+              <p>La definizione formale di macchina di Turing presenta lievi variazioni ma essenzialmente è una tupla (lista ordinata) comprendente</p>
               <ul>
-                <li>states Q</li>
-                <li>start state q₀ &in; Q</li>
-                <li>input alphabet &Sigma;</li>
-                <li>tape alphabet &Gamma;, where &Sigma; &subseteq; &Gamma;</li>
-                <li>blank symbol b &in; &Gamma;</li>
-                <li>transition function &delta; that has the type Q &times; &Gamma; &rightarrow; &Gamma; &times; {L, R} &times; Q</li>
+                <li>stati Q</li>
+                <li>stato iniziale q₀ &in; Q</li>
+                <li>alfabeto di input &Sigma;</li>
+                <li>alfabeto nastro &Gamma;, dove &Sigma; &subseteq; &Gamma;</li>
+                <li>simbolo "blank" (spazio vuoto) b &in; &Gamma;</li>
+                <li>funzione di transizione &delta; Q &times; &Gamma; &rightarrow; &Gamma; &times; {L, R} &times; Q</li>
               </ul>
-              <p>where Q, &Sigma;, and &Gamma; are finite nonempty sets.
-                Some definitions also require that the blank symbol not be part of the input (b &notin; &Sigma;).</p>
+              <p>dove Q, &Sigma;, e &Gamma; sono insiemi non vuoti
+                Alcune definizioni richiedono inoltre che il simbolo vuoto non faccia parte dell'input (b &notin; &Sigma;).</p>
 
-              <p>As an example, a formal description for the “binary increment” machine is as follows:</p>
+              <p>Ad esempio, una descrizione formale per la macchina ad “incremento binario” è la seguente:</p>
               <p>
-                Q = { right, carry, done }
-                <br>q₀ = right
+                Q = { destra, aggiunge, done }
+                <br>q₀ = destra
                 <br>&Sigma; = { 1, 0 }
                 <br>&Gamma; = { 1, 0, ' ' }
                 <br>b = ' '
               </p>
               <p>
-                    &delta;(right, 1)   = (1, R, right)
-                <br>&delta;(right, 0)   = (0, R, right)
-                <br>&delta;(right, ' ') = (' ', L, carry)
-                <br>&delta;(carry, 1)   = (0, L, carry)
-                <br>&delta;(carry, 0)   = (1, L, done)
-                <br>&delta;(carry, ' ') = (1, L, done)
+                    &delta;(destra, 1)   = (1, R, destra)
+                <br>&delta;(destra, 0)   = (0, R, destra)
+                <br>&delta;(destra, ' ') = (' ', L, aggiunge)
+                <br>&delta;(aggiunge, 1)   = (0, L, aggiunge)
+                <br>&delta;(aggiunge, 0)   = (1, L, done)
+                <br>&delta;(aggiunge, ' ') = (1, L, done)
               </p>
-              <p>Note that for simplicity, the simulator limits each symbol to one character.
-                Furthermore, input is not checked for conformance with an input alphabet, in exchange for not having to define input and tape alphabets.</p>
-              <p>(The behavior of a Turing machine can also be described in mathematical terms if desired.
-                Without going into too much detail, this involves defining how a <em>configuration</em>
-                of a machine—its state, tape contents, and tape head position (current cell)—leads to the next configuration, based on the transition function.
-                To start with, the tape’s contents may be defined as a function from integers to symbols,
-                with the head position as an integer, and each move {L, R} adding -1 or +1 respectively to the head position.)</p>
-            </div>
+              <p>Nota che per semplicità, il simulatore limita ciascun simbolo a un carattere.
+                Inoltre, non viene verificata la conformità dell'input con un alfabeto di input, in cambio del fatto che non è necessario definire alfabeti di input e nastro.</p>
+              <p>(Se lo si desidera, il comportamento di una macchina di Turing può anche essere descritto in termini matematici.
+                Senza entrare troppo nei dettagli, si tratta di definire come funziona una <em>configurazione</em>
+                di una macchina (il suo stato, il contenuto del nastro e la posizione della testina del nastro (cella corrente)) porta alla configurazione successiva, in base alla funzione di transizione.
+                Per cominciare, il contenuto del nastro può essere definito come una funzione che va dai numeri interi ai simboli,
+                con la posizione della testa come numero intero e ogni mossa {L, R} aggiunge rispettivamente -1 o +1 alla posizione della testa.)</p>            </div>
           </div>
         </div>
         <div class="panel panel-default">
@@ -637,149 +631,128 @@ aria-labelledby="importPanelHeader">
           </div>
           <div id="details-variations" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingVariations">
             <div class="panel-body">
-              <p>Some aspects of the definition vary from author to author, but the differences come down to preference and do not affect computational power.
-                That is, machines on one model can be simulated or converted to run on another model.</p>
-              <p>Some of the variations you may come across:</p>
+              <p>Alcuni aspetti della definizione variano da autore ad autore, ma le differenze si riducono alle preferenze e non influiscono sulla potenza di calcolo.
+                Cioè, le macchine su un modello possono essere simulate o convertite per funzionare su un altro modello.</p>
+              <p>Alcune delle varianti che potresti incontrare:</p>
               <ol>
-                <li>The tape only extends infinitely to the right. The left end is where the tape head (current cell) begins.
-                  Moving left at the left end keeps the tape head on the same cell.</li>
-                <li>In addition to “move left” (L) or “move right” (R), a tape head movement can be “no move” (N).</li>
-                <li>Instead of moving the tape head, a movement shifts the tape itself, so that the directions of L &amp; R are swapped.
-                  (Shifting the tape left is the same as moving the head right.)</li>
-                <li>The machine can only halt in one of two states: a state designated the <em>accept</em> state, or another state designated the <em>reject</em> state.
-                  These states have no exiting transitions. All the other states must have transitions defined for every symbol.</li>
+                <li>Il nastro si estende all'infinito solo a destra. L'estremità sinistra è dove inizia la testina del nastro (cella corrente).
+                  Lo spostamento a sinistra all'estremità sinistra mantiene la testina del nastro sulla stessa cella.</li>
+                <li>Oltre a "spostare a sinistra" (L) o "spostare a destra" (R), un movimento della testina del nastro può essere "nessun movimento" (N).</li>
+                <li>Invece di spostare la testina del nastro, un movimento sposta il nastro stesso, in modo che le direzioni di L &amp; R vengono scambiati.
+                  (Spostare il nastro a sinistra equivale a spostare la testa a destra.)</li>
+                <li>La macchina può fermarsi solo in uno dei due stati: uno stato designato come stato <em>accetta</em>, o un altro stato designato come stato <em>rifiuta</em>.
+                  Questi stati non hanno transizioni finali. Tutti gli altri stati devono avere transizioni definite per ogni simbolo.</li>
               </ol>
-              <p>The simulator was designed with these and other considerations in mind.</p>
+              <p>Il simulatore è stato progettato tenendo presenti queste e altre considerazioni.</p>
               <ol>
-                <li>Limiting the tape was inconvenient, often requiring marking the left end with a symbol, and writing numbers in reverse.
-                  On the other hand, machines created for a right-infinite tape can run on a doubly-infinite tape with little to no modification.</li>
-                <li>Compared to L and R, “no move” (N) seems to be seldom used. For now it has been omitted for conceptual simplicity.</li>
-                <li>It's more intuitive to set the current cell directly by moving the tape head. Turing also follows this convention.
-                  (The visualization however stays centered on the head to avoid issues of the head moving out of view.)</li>
-                <li>The accept/reject convention still works; it's just not required.
-                  In fact the simulator supports a convenient shorthand, demonstrated in some of the examples:
-                  omit the reject state and all transitions to it, and treat halting on a non-accept state as an implicit rejecting transition.
-                  This reduces tedious boilerplate code and makes for a cleaner diagram.</li>
-              </ol>
+                <li>Limitare il nastro era scomodo, poiché spesso richiedeva di contrassegnare l'estremità sinistra con un simbolo e di scrivere i numeri al contrario.
+                  D'altro canto, le macchine create per un nastro infinito a destra possono funzionare su un nastro doppiamente infinito con modifiche minime o nulle.</li>
+                <li>Rispetto a L e R, "nessuna mossa" (N) sembra essere usato raramente. Per ora è stato omesso per semplicità concettuale.</li>
+                <li>È più intuitivo impostare direttamente la cella corrente spostando la testina del nastro. Anche Turing segue questa convenzione.
+                  (La visualizzazione rimane tuttavia centrata sulla testa per evitare problemi di spostamento della testa fuori dalla vista.)</li>
+                <li>La convenzione accetta/rifiuta funziona ancora; semplicemente non è richiesto.
+                  In effetti il ​​simulatore supporta una comoda abbreviazione, dimostrata in alcuni esempi:
+                  omettere lo stato di rifiuto e tutte le transizioni ad esso e trattare l'arresto in uno stato di non accettazione come una transizione di rifiuto implicita.
+                  Ciò riduce il noioso codice "boilerplate" e rende il diagramma più pulito.</li>              </ol>
             </div>
           </div>
         </div>
       </div>
     </section>
     <p>
-      For a very readable introduction to Turing machines, including their significance and interesting implications,
-      see the excellent <a href="http://plato.stanford.edu/entries/turing-machine" target="_blank">entry in the Stanford Encyclopedia of Philosophy</a>.
-    </p>
+      Per un'introduzione molto leggibile alle macchine di Turing, compreso il loro significato e le implicazioni interessanti,
+      vedere l'eccellente <a href="http://plato.stanford.edu/entries/turing-machine" target="_blank">voce nella Stanford Encyclopedia of Philosophy</a>.    </p>
   </section>
 
 
 
   <section class="col-md-4 col-sm-6">
-    <h3>Make your own</h3>
-    <p>Make spinoffs from the examples or your own creations by using
-      <i>Edit</i> &gt; <i>Duplicate document</i>.
-    You can also start from scratch with a new blank document.</p>
-    <p>All it takes to describe a Turing machine is a start state, blank symbol, and transition table.</p>
-    <h4>Example</h4>
+    <h3>Definire la propria MT</h3>
+    <p>Creare derivati ​​dagli esempi o dalle proprie creazioni utilizzando
+      <i>Edita</i> &gt; <i>Duplica il documento</i>.
+    Si pu&oacute; anche iniziare da zero con un nuovo documento vuoto.</p>
+    <p>Tutto ciò che serve per descrivere una macchina di Turing è uno stato iniziale, un simbolo vuoto e una tabella di transizione.</p>
+    <h4>Esempio</h4>
     <pre>
 # Adds 1 to a binary number.
 input: '1011'
 blank: ' '
-start state: right
+start state: destra
 table:
-  # scan to the rightmost digit
-  right:
-    1: R
-    0: R
-    ' ': {L: carry}
-  # then carry the 1
-  carry:
-    1: {write: 0, L}
-    0: {write: 1, L: done}
-    ' ': {write: 1, L: done}
-  done:
+  # va al carattere piu' a destra
+  destra:
+    [1,0]: R
+    ' '  : {L: aggiunge}
+  # poi aggiunge 1
+  aggiunge:
+    1      : {write: 0, L}
+    [0,' ']: {write: 1, L: halt}
+  halt:
 </pre>
     <p>
-      Here the states are <code>right</code>, <code>carry</code>, and <code>done</code>.<br>
-      The symbols are '<code>1</code>', '<code>0</code>', and '<code> </code>'.
+      Qui gli stati sono <code>destra</code>, <code>aggiunge</code>, e <code>halt</code>.<br>
+      I simboli sono '<code>1</code>', '<code>0</code>', e '<code> </code>'.
     </p>
     <p>
-      We designate one state the <i>start state</i>,
-      and one symbol the <i>blank</i> symbol (found on unmarked tape cells).
+      Designamo uno stato come <i>stato iniziale</i>,
+      e un simbolo come <i>blank</i> (quello che si trova nelle celle considerate come vuote).
     </p>
     <p>
-      A state and a symbol together map to an instruction.
-      In the <code>carry</code> state, for instance, the symbol <code>1</code> maps to the instruction <code>{write: 0, L}</code>.
-      When no instruction is defined, as in the <code>done</code> state, the machine halts.
+      Uno stato e un simbolo corrispondono a una istruzione.
+      Per esempio, nello stto <code>aggiungi</code>, il simbolo <code>1</code> corrisponde all'istruzione <code>{write: 0, L}</code>.
+      Quando non è definita alcuna istruzione, come nello stato <code>halt</code>, la macchina si ferma.
     </p>
-    <h4>Instruction format</h4>
-    The general form of an instruction has three parts:
-    <pre>{write: <var>symbol</var>, <var>move</var>: <var>state</var>}</pre>
+    <h4>Formato delle istruzioni</h4>
+    La forma generale di un'istruzione è composta da tre parti:
+    <pre>{write: <var>simbolo</var>, <var>direzione</var>: <var>stato</var>}</pre>
     <ul>
-      <li><code>{write: 1, L: done}</code> writes the symbol <code>1</code>,
-        moves the tape head left (<code>L</code>), and goes to the <code>done</code> state.
+      <li><code>{write: 1, L: halt}</code> scrive il simbolo <code>1</code>,
+        muove verso sinistra (<code>L</code>), e va allo stato  <code>halt</code>.
       </li>
     </ul>
-    <p>For brevity, you can omit the symbol and state if they stay the same.</p>
+    <p>Per brevità, si pu&oacute; omettere il simbolo e lo stato indicare se rimangono gli stessi.</p>
     <ul>
-      <li><code>{L: carry}</code> writes the same symbol that was read,
-        moves the tape head left, and goes to the <code>carry</code> state.</li>
-      <li><code>R</code> (shorthand for {R}) simply moves the tape head right.
-        It writes back the same symbol and stays in the same state.</li>
+      <li><code>{L: aggiungi}</code> scrive lo stesso simbolo che è stato letto,
+        sposta la testina del nastro a sinistra e passa allo stato <code>aggiungi</code>.</li>
+      <li><code>R</code> (abbreviazione di {R}) sposta semplicemente la testina del nastro verso destra.
+        Riscrive lo stesso simbolo e rimane nello stesso stato.</li>
     </ul>
   </section>
 
 
 
   <div class="col-md-4 col-sm-12">
-    <h3>Tips</h3>
+    <h3>Suggerimenti</h3>
     <div class="row">
     <div class="col-sm-6 col-md-12">
-      <h4>Editor keyboard shortcuts</h4>
+      <h4>Scorciatoie da tastiera dell'editor</h4>
       <table id="kbdShortcutTable" class="editor-shortcuts table">
       </table>
       <noscript>
         <p>The code editor and keyboard shortcuts require that JavaScript be enabled.</p>
       </noscript>
-      <p>More keyboard shortcuts are available on the <a href="https://github.com/ajaxorg/ace/wiki/Default-Keyboard-Shortcuts" target="_blank">full list</a>.</p>
+      <p>Ulteriori scorciatoie da tastiera sono disponibili su <a href="https://github.com/ajaxorg/ace/wiki/Default-Keyboard-Shortcuts" target="_blank">full list</a>.</p>
     </div>
     <div class="col-sm-6 col-md-12">
-      <h4>Misc. tips</h4>
+      <h4>Suggerimenti</h4>
       <ul id="misc-tips-list">
-        <li>Drag or click a state node to fix it in place; double-click to release it.</li>
-        <li>Don’t hesitate to duplicate.
-          Use <i>Edit</i> &gt; <i>Duplicate document</i> to create a snapshot of your current document whenever you’re about to make a larger edit.</li>
-        <li>Changes are autosaved to your browser’s local storage.
-          They will stay there between sessions, but be careful when clearing browser data. You can create backups by downloading your documents.</li>
-        <li>Incognito / Private Browsing mode uses a separate temporary storage. This is useful for importing or editing documents that you want to try but don’t want to keep.</li>
+        <li>Trascina o fai clic su un nodo di stato per fissarlo sul posto; fare doppio clic per rilasciarlo.</li>
+        <li>Non esitare a duplicare.
+          Utilizzare <i>Edita</i> &gt; <i>Duplica documento</i> per creare un'istantanea del documento corrente ogni volta che si sta per apportare una modifica più ampia.</li>
+        <li>Le modifiche vengono salvate automaticamente nella memoria locale del tuo browser.
+          Rimarranno lì tra una sessione e l'altra, ma fare attenzione quando si cancellano i dati del browser. Si possono creare backup scaricando i  documenti.</li>
       </ul>
       <a class="disclosure-triangle collapsed" role="button" data-toggle="collapse" href="#aboutSyntax">
-        More about the syntax
+        Sintassi
       </a>
       <div id="aboutSyntax" class="collapse">
-        <p>The code is written in <a href="https://en.wikipedia.org/wiki/YAML" target="_blank"><abbr>YAML</abbr></a> 1.2, a general-purpose data format.</p>
-        <p>
-          If you’re familiar with JSON, YAML is similar, but designed to be more readable.
-          Mappings can use indent instead of brackets <code>{}</code>, and strings can often be included directly without quotes.
-        </p>
-        <p>
-          Some strings need to be quoted: for example, those that start/end with a space, or include certain characters that have special meaning in YAML.
-          If a string is causing problems, try putting quotes around it.
-        </p>
+        <p>Il codice è scritto in <a href="https://en.wikipedia.org/wiki/YAML" target="_blank"><abbr>YAML</abbr></a> 1.2.</p>
       </div>
     </div>
     </div>
   </div>
 </div>
 </div>
-
-<footer class="page-footer">
-  <a href="https://github.com/aepsilon/turing-machine-viz" target="_blank" title="View on GitHub">
-    <svg class="octicon octicon-mark-github" height="24" width="24" viewBox="0 0 16 16" version="1.1" aria-hidden="true">
-      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59 0.4 0.07 0.55-0.17 0.55-0.38 0-0.19-0.01-0.82-0.01-1.49-2.01 0.37-2.53-0.49-2.69-0.94-0.09-0.23-0.48-0.94-0.82-1.13-0.28-0.15-0.68-0.52-0.01-0.53 0.63-0.01 1.08 0.58 1.23 0.82 0.72 1.21 1.87 0.87 2.33 0.66 0.07-0.52 0.28-0.87 0.51-1.07-1.78-0.2-3.64-0.89-3.64-3.95 0-0.87 0.31-1.59 0.82-2.15-0.08-0.2-0.36-1.02 0.08-2.12 0 0 0.67-0.21 2.2 0.82 0.64-0.18 1.32-0.27 2-0.27 0.68 0 1.36 0.09 2 0.27 1.53-1.04 2.2-0.82 2.2-0.82 0.44 1.1 0.16 1.92 0.08 2.12 0.51 0.56 0.82 1.27 0.82 2.15 0 3.07-1.87 3.75-3.65 3.95 0.29 0.25 0.54 0.73 0.54 1.48 0 1.07-0.01 1.93-0.01 2.2 0 0.21 0.15 0.46 0.55 0.38C13.71 14.53 16 11.53 16 8 16 3.58 12.42 0 8 0z" />
-    </svg>
-  </a>
-</footer>
 
 <!-- Dialog for Import -->
 <div id="importDialog" class="modal fade" tabindex="-1" role="dialog"

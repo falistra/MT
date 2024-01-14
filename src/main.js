@@ -183,10 +183,10 @@ var menu = (function () {
           deleteLink.textContent = 'Delete…';
           deleteLink.setAttribute('data-target', '#deleteDialog');
         } else {
-          renameLink.textContent = 'Rename a copy…';
+          renameLink.textContent = 'Rinomina una copia…';
           renameLink.addEventListener('click', renameExample);
           renameLink.removeAttribute('data-toggle');
-          deleteLink.textContent = 'Reset this example…';
+          deleteLink.textContent = 'Reimposta questo esempio…';
           deleteLink.setAttribute('data-target', '#resetExampleDialog');
         }
         wasExample = isExample;

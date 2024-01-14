@@ -84,7 +84,7 @@ function main(commands, table) {
 
 var entries = [
   [
-    { name: 'save', desc: 'Load machine<br> <small>Save changes and load the machine.</small>' }
+    { name: 'save', desc: 'Carica la TM<br> <small>Salva le modifiche e carica la macchina.</small>' }
   ], [
     { name: 'togglecomment', desc: 'Toggle comment' },
     { name: 'indent', desc: 'Indent selection' },
