@@ -1,0 +1,279 @@
+\documentclass[a4paper]{article}
+% AMS Packages
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage[pages=all, color=black, position={current page.south}, placement=bottom, scale=1, opacity=1, vshift=5mm]{background}
+\SetBgContents{
+	$Corso\ di\ Informatica\ Teorica\ -\ Universit\grave{a}\ di\ Bologna$
+}      % copyright
+
+\usepackage[margin=1in]{geometry} % full-width
+
+
+
+% Unicode
+\usepackage[utf8]{inputenc}
+\usepackage{hyperref}
+\hypersetup{
+	unicode,
+%	colorlinks,
+%	breaklinks,
+%	urlcolor=cyan, 
+%	linkcolor=blue, 
+	pdfauthor={Fabio Zanasi},
+	pdftitle={La macchina di Turing Universale},
+	pdfsubject={Descrizione dettagliata dell'implementazione},
+	pdfkeywords={Turing, Macchina, Universale, Implementazione},
+	pdfproducer={LaTeX},
+	pdfcreator={pdflatex}
+}
+
+% Vietnamese
+%\usepackage{vntex}
+
+% Natbib
+\usepackage[sort&compress,numbers,square]{natbib}
+\bibliographystyle{mplainnat}
+
+% Theorem, Lemma, etc
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{claim}{Claim}[theorem]
+\newtheorem{axiom}[theorem]{Axiom}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{fact}[theorem]{Fact}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{criterion}[theorem]{Criterion}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{principle}[theorem]{Principle}
+
+\usepackage{graphicx, color}
+\graphicspath{{fig/}}
+
+%\usepackage[linesnumbered,ruled,vlined,commentsnumbered]{algorithm2e} % use algorithm2e for typesetting algorithms
+\usepackage{algorithm, algpseudocode} % use algorithm and algorithmicx for typesetting algorithms
+\usepackage{mathrsfs} % for \mathscr command
+
+\usepackage{lipsum}
+
+% Author info
+\title{La macchina di Turing Universale}
+\author{Fabio Zanasi$^1$}
+
+\date{
+	$^1$ $Universit\grave{a}\ di\ Bologna$ 
+}
+
+\begin{document}
+	\maketitle
+	\begin{abstract}
+		Una Macchina di Turing Universale $\grave{e}$ in grado di emulare il comportamento di una qualsiasi
+		macchina di Turing codificata sul suo nastro.   
+		
+		\noindent\textbf{Keywords:} UTM, MTU, Turing
+	\end{abstract}
+
+	\tableofcontents
+	
+	\section{Descrizione}
+	\label{sec:intro}
+	
+	\subsection{Struttura}
+	\label{sec:pre}
+	
+La macchina di Turing universale ($\mathfrak{U}$) $\grave{e} $ in grado di emulare una 
+qualsiasi macchina di Turing ($\mathfrak{M}$) il cui insieme di simboli consiste di tre soli simboli : 
+\textvisiblespace (blank), $\mathbf{0}$ e $\mathbf{1}$.
+
+La configurazione corrente della macchina ($\mathfrak{M}$)  $\grave{e}$ codificata sul
+nastro di ($\mathfrak{U}$) come segue:
+\vspace{5pt}
+\begin{center}
+\hrule
+\vspace{2pt}
+\ldots\ \textvisiblespace\ \textvisiblespace\ \textit{sinistra-nastro}\ [\ $\Hat{\mathfrak{M}}$ ]\ $\boxdot$\ \textit{destra-nastro}\ \textvisiblespace\ \textvisiblespace\ \ldots 
+\vspace{2pt}
+\hrule
+\end{center}
+\vspace{5pt}
+
+\begin{itemize}
+	\item \textit{sinistra-nastro}\ $\grave{e}$ il contenuto del nastro di $\mathfrak{M}$ alla sinistra della cella corrente.
+	\item $\Hat{\mathfrak{M}}$ $\grave{e}$ la codifica (notare $\hat{}$\ !) delle regole di transizione per $\mathfrak{M}$ , ove $\grave{e}$ segnato lo stato corrente.
+	\item $\boxdot$\ $\grave{e}$ il contenuto della cella corrente di $\mathfrak{M}$.
+	\item \textit{destra-nastro}\ $\grave{e}$ il contenuto del nastro di $\mathfrak{M}$ alla destra della cella corrente.
+  \end{itemize}
+	
+	\subsection{La codifica delle regole di transizione per $\mathfrak{M}$ }
+	\label{sec:prev-results}
+	
+	Gli stati di $\mathfrak{M}$ sono numerati $q_1$ , \ldots , $q_m$. Nel seguito denotiamo con 
+	$\Hat{q_i}$ la codifica dello stato $q_1$ (notare $\hat{}$\ !) . Se $q_C$ $\grave{e}$ lo stato corrente, 
+	La codifica delle regole di transizione per $\mathfrak{M}$ ha la forma:
+
+	\vspace{3pt}
+	\begin{center}
+		$\Hat{q_1}$\ :\ $\Hat{q_2}$\ :\ \ldots\ $\Hat{q}_{C-1}$\ :\ $\Hat{q}_{C}$\ !\ $\Hat{q}_{C+1}$\ :\ \ldots\ $\Hat{q}_{m}$  
+	\end{center}
+	\vspace{3pt}
+
+	dove $\Hat{q_i}$\ codifica (notare $\hat{}$\ !)  la regola di transizione per lo stato $\Hat{q_i}$\ , la codifica di ogni stato termina con il i due punti (:) 
+	eccetto che per lo stato corrente che $\grave{e}$ individuato per terminare con un punto esclamativo.
+	\\
+	Data la regola di transizione per lo stato $\Hat{q_i}$\ :
+
+	\vspace{3pt}
+		\begin{itemize}
+			\item \begin{center}
+			$q_i$,\textvisiblespace\ $\rightarrow$\ $s_j$,$D_j$,$q_j$
+			\end{center}
+			\item \begin{center}
+			$q_i$,0\ $\rightarrow$\ $s_k$,$D_k$,$q_k$
+			\end{center}			
+			\item  \begin{center}
+			$q_i$,1\ $\rightarrow$\ $s_l$,$D_l$,$q_l$
+			\end{center}	
+		\end{itemize}	
+	\vspace{3pt}
+
+	dove $s_j$,$s_k$,$s_l$ $\in$ $\{$ \textvisiblespace,0,1$\}$ , $D_j$,$D_k$,$D_k$ $\}$  $\in$ $\{$ $\mathbf{L}$,$\mathbf{R}$ $\}$ ( la testina si muove $\mathbf{sempre}$ ) 
+	e 1 $\leqslant$ j,k,l $\leqslant$ m (numero degli stati), allora
+	\\
+	la codifica $\Hat{q_i}$\  ha la forma
+
+	\vspace{3pt}
+	\begin{center}
+		$s_j$\ $D_j$\ $\sigma_{j-i}$\ ,\ $s_k$\ $D_k$\ $\sigma_{k-i}$\ ,\ $s_l$\ $D_l$\ $\sigma_{l-i}$\ 
+	\end{center}
+	\vspace{3pt}
+
+	dove le tre parti della codifica della regola di transizione sono separate dalla virgola (,) e
+
+	\vspace{3pt}
+	\begin{center}
+
+		$\sigma_{\delta}$ = $\left\{ \begin{array}{rcl} . \ \ se\ \delta = 0, \\ +^{\delta} \ \ se\ \delta > 0, \\ -^{|\delta|} \ \ se\ \delta < 0, \end{array}\right. $
+
+	\end{center}
+	\vspace{3pt}
+
+	gli esponenti (p.e. $\delta$ in $+^{\delta}$) denotano ripetizione. 
+	Cos$\grave{i}$ una sequenza di $|\delta|$ simboli (+) o (-) codificano il relativo cambiamento nel numero di stato, il punto (.) 
+	denota nessun cambiamento di stato.
+	Se non c'$\grave{e}$ una regola di transizione per (${q_i}$,s) (interpretata come una configurazione di arresto), allora la codifica
+	$\Hat{q_i}$\ $\grave{e}$ la stringa vuota. 
+	\\
+	La dimensione di $\Hat{\mathfrak{M}}$ $\grave{e}$ O($m^2$), dove $m$ $\grave{e}$ il numero di stati di $\mathfrak{M}$.
+	
+	\subsection{Esempio}
+	\label{sec:examples}
+	La macchina di Turing $\mathfrak{M}$ a due stati per incrementare un numero in formato binario :
+
+	\vspace{3pt}
+		\begin{itemize}
+			\item \begin{center}
+			$q_1$,\textvisiblespace\ $\rightarrow$\ $\mathbf{\textvisiblespace}$,$\mathbf{L}$,$q_2$
+			\end{center}
+			\item  \begin{center}
+			$q_1$,0\ $\rightarrow$\ $\mathbf{0}$,$\mathbf{R}$,$q_1$	
+			\end{center}		
+			\item \begin{center}
+			$q_1$,1\ $\rightarrow$\ $\mathbf{1}$,$\mathbf{R}$,$q_1$
+			\end{center}			
+		\end{itemize}	
+	\vspace{1pt}
+
+	\vspace{1pt}
+		\begin{itemize}
+			\item  \begin{center}
+			$q_2$,\textvisiblespace\ $\rightarrow$\ $\mathbf{1}$,$\mathbf{L}$,$q_3$
+			\end{center}			
+			\item \begin{center}
+			$q_2$,0\ $\rightarrow$\ $\mathbf{1}$,$\mathbf{L}$,$q_3$
+			\end{center}			
+			\item \begin{center}
+			$q_2$,1\ $\rightarrow$\ $\mathbf{0}$,$\mathbf{L}$,$q_2$
+			\end{center}
+		\end{itemize}	
+	\vspace{3pt}
+
+	\vspace{1pt}
+		\begin{itemize}
+			\item  \begin{center}
+			$q_3$,\textvisiblespace\ $\rightarrow$\ $\mathbf{\textvisiblespace\ }$,$\mathbf{L}$,$halt$
+			\end{center}			
+			\item \begin{center}
+			$q_3$,0\ $\rightarrow$\ $\mathbf{0}$,$\mathbf{L}$,$q_3$
+			\end{center}			
+			\item \begin{center}
+			$q_3$,1\ $\rightarrow$\ $\mathbf{1}$,$\mathbf{L}$,$q_3$
+			\end{center}
+		\end{itemize}	
+	\vspace{3pt}
+
+
+con stato iniziale $q_1$, input iniziale $\mathbf{1011}$, ha questa codifica $\Hat{\mathfrak{M}}$
+
+\vspace{3pt}
+\begin{center}
+$\mathbf{[\ L+,0R.,1R.!1L+,1L+,0L.:,0L.,1L.:]1011}$
+\end{center}
+\vspace{3pt}
+
+\section{Implementazione}
+\label{sec:Impl}
+
+
+\subsection{Insieme dei simboli}
+\label{sec:SymbolSet}
+
+$\mathfrak{U}$ fa uso di un insieme di 16 simboli 
+$\{$ $\mathbf{\textvisiblespace}$  $\mathbf{0}$  $\mathbf{1}$ $\mathbf{[}$ 
+$\mathbf{]}$ $\mathbf{,}$ $\mathbf{:}$ $\mathbf{!}$ $\mathbf{L}$ $\mathbf{R}$
+$\mathbf{.}$ $\mathbf{-}$ $\mathbf{+}$ $\mathbf{\#}$ $\mathbf{<}$ $\mathbf{>}$
+$\}$ 
+
+\subsection{Algoritmo}
+\label{sec:Impl}
+
+$\mathfrak{U}$ inizia posizionandosi alla prima cella a destra di $\mathbf{]}$ , ove si trova il primo
+simbolo di input di $\mathfrak{M}$.
+
+\begin{enumerate}
+	\item Legge il simbolo, $s$, dalla cella corrente.
+	\item Trova lo stato corrente, muovendosi a sinistra fino a quando non incontra il 
+	simbolo $\mathbf{!}$
+	\item Trova la regola di transizione corrente muovendosi a sinistra oltre 2, 1 o 0 virgole (,)
+	se $s$ $\grave{e}$ $\mathbf{\textvisiblespace}$  $\mathbf{0}$  $\mathbf{1}$ rispettivamente.
+	\item Se la regola corrente $\grave{e}$ vuota , $\mathfrak{U}$ si ferma.
+	\item Altrimenti, modifica la codifica dello stato corrente, 
+	cambiando il punto $\mathbf{.}$ in $\mathbf{\#}$, ogni $\mathbf{-}$ in $\mathbf{<}$ e
+	ogni $\mathbf{+}$ in $\mathbf{<}$
+	\item Legge il simbolo da scrivere dalla regola corrente , 
+	si muove verso destra e lo scrive nella cella corrente di $\mathfrak{M}$
+	\item Muove a sinistra alla regola corrente (riconoscibile dalla presenza di $\mathbf{\#}$, 
+	$\mathbf{<}$ $\mathbf{>}$ ) e legge la direzione di spostamento ($\mathbf{L}$ o $\mathbf{R}$)
+	\item Sposta l'intera codifica di $\mathfrak{M}$ a sinistra o a destra di una cella, 
+	poi aggiorna la cella corrente di $\mathfrak{M}$.
+	\item Cambia lo stato se necessario sostituendo ogni $\mathbf{<}$ con $\mathbf{-}$ o ogni
+	$\mathbf{>}$ con $\mathbf{+}$, e ogni volta , muovendo il simbolo $\mathbf{!}$ alla
+	posizione del successivo $\mathbf{:}$ alla sinistra o alla destra rispettivamente. 
+	Se non $\grave{e}$ richiesto un cambiamento di stato, il simbolo $\mathbf{\#}$ $\grave{e}$ 
+	sostituito con un $\mathbf{.}$
+	\item Muove a destra alla cella corrente di $\mathfrak{M}$ per ricominciare dal passo 1.
+
+\end{enumerate}
+
+%	\newpage
+	\bibliography{refs}
+	
+\end{document}
